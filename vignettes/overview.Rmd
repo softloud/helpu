@@ -1,0 +1,103 @@
+---
+title: "Overview"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Overview}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+#library(helpu)
+```
+
+This document is just Lisa trying to get her thoughts and vocabulary straight on this topic. It might turn into a proper vignette or might end up in the mess folder :)
+
+## Who is this package for?
+
+Subject specialists and data analysts need to collaborate effectively to conduct rigorous, reproducible research. However, their different areas of expertise can make collaboration frustrating. This package aims to provide checklists and tools that both subject specialists and data analysts can use to communicate about a project at its various stages.
+
+## Stages of a Project
+
+- develop research question
+- data acquisition
+- data cleaning [^1]
+- data wrangling
+- description (tables and plots)
+- analysis
+- interpretation
+
+[^1]: Are cleaning and wrangling different? I conceptualise cleaning as fixing errors and inconsistencies in the dataset, while wrangling is getting the data joined and in a shape for analysis. But there is probably some overlap.
+
+The subject specialist is likely to lead the development of the research question and interpretation of analyses. The data analyst is likely to lead the data cleaning/wrangling and analysis. Either the specialist or the analyst may lead the data acquisition and description. However, they will need each other's expertise at all stages.
+
+## How a specialist can help an analyst
+
+When a data analyst starts to look at a new data set, they need to know these things about the project:
+
+### What are the research questions? 
+
+This needs to be explained in terms of the observations you want to explain (e.g., the outcome measures, dependent variables), the factors you want to use to explain them (e.g., the independent variables, covariates), and any other attributes you might use to to exclude observations or divide your data.
+
+### What are the random factors? 
+
+Often, human subjects are one unit of analysis, or random factor, but you may also be sampling at other levels, such as from different drug trials, or subjects may be nested in different countries. Your random factors may be crossed, for example when a sample of subjects respond to a sample of face images, both subjects and faces are units of analysis. 
+
+### What belongs to which random factors?
+
+While this might seem totally obvious to a domain expert, it is important to be clear about how observations relate to random factors. Foe example, a column labelled "gender" might refer to the gender of the subject or the gender of a face image for a social perception study. Or the "treatment" variable might differ between arms of a study, but never between subjects within an arm.
+
+### What levels should factors have?
+
+It may also not be obvious to a non-expert in your domain whether two similar-looking labels are actually the same thing or two different things. For example, you wouldn't want to combine "chlorine" and "chloride" into one category, but you probably do want to combine "female" and "femael". It will be extremely helpful to an analyst if you can give them the *exact* category labels you want to use for each factor in your research questions, and clear guidance about what to do with observations that don't fit these categories.
+
+### What kind of values do you expect?
+
+For each of the variables in your research questions, provide an indication of the type of data you expect. For example, values for body mass index (BMI) should continuous values mostly between 16 and 35, never less than 10, and you would want to double-check values over 42. The analyst can then build checks into the data cleaning pipeline to flag any suspicious or impossible values.
+
+### What relationships do you expect?
+
+Checking that obvious relationships exist in a dataset is called "positive controls". For example, reverse-coding can cause enormous problems in a data-cleaning pipeline. One way to detect problems is to check for directional relationships. For example, BMI and weight should be positively related in most populations. If you found a strong negative correlation, this would indicate that something has gone wrong. Some of these relationships might be obvious to non-specialists, but others will need specialist domain knowledge.
+
+### Recoding
+
+Many of the values in the dataset probably need to be recoded in some way to create the factors relevant to your research question. You may need multiple values to be combined mathematically, certain values excluded, or new categories created from the combination of other categories. Be clear about which "raw" variables will contribute to which "calculated" variables and how. 
+
+### Checklist
+
+- [ ] Write down the research questions, putting each thing that will be considered in the models in bold.
+- [ ] List the random factors
+    - [ ] Approximately how many should there be in the dataset?
+    - [ ] If nested, what is the approximate range of number per group?
+    - [ ] Which column(s) in the data uniquely identify each member of each random factor?
+    - [ ] Which columns in the data "belong" to each random factor?
+- [ ] List the variables in the data relevant to your research question(s)
+    - [ ] if categorical, what categories do you expect
+    - [ ] if continuous, what is the expected range
+    - [ ] what values are impossible
+    - [ ] what values are suspicious
+    - [ ] are there any variables that should definitely have a relationship (positive controls)
+- [ ] Explain how the variables in the data need to be recoded 
+
+
+### Concepts
+
+- random factor / unit of analysis
+- dependent variable / outcome measure
+- independent variable / fixed factor
+- categorical / discrete / ordinal
+- continuous
+- factor / variable / measure / column
+- raw vs calculated variables
+
+
+
+
+
