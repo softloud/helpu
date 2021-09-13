@@ -22,3 +22,6 @@ Imports:
     magrittr
 URL: https://github.com/softloud/helpu
 BugReports: https://github.com/softloud/helpu/issues
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
