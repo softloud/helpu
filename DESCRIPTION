@@ -1,0 +1,31 @@
+Package: helpu
+Title: Help Me Help You
+Version: 0.0.0.9000
+Authors@R: c(
+    person(given = "Charles",
+           family = "Gray",
+           role = c("aut", "cre"),
+           email = "charlestigray@gmail.com",
+           comment = c(ORCID = "0000−0002−9978−011X")),
+    person(given = "Lisa", 
+          family = "DeBruine", 
+          role = c("aut"), 
+          email = "debruine@gmail.com", 
+          comment = c(ORCID = "0000-0002-7523-5539")
+    ))
+Description: The goal of helpu is to help communication between subject experts and analysts.
+License: CC BY 4.0
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    magrittr
+URL: https://github.com/softloud/helpu
+BugReports: https://github.com/softloud/helpu/issues
+Suggests: 
+    rmarkdown,
+    knitr,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr

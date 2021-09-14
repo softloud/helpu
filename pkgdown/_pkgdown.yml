@@ -1,0 +1,11 @@
+url: https://softloud.github.io/helpu
+
+template:
+  opengraph:
+    image:
+      src: man/figures/card.png
+      alt: ""
+    twitter:
+      creator: "@cantabile"
+      site: "@cantabile"
+      card: summary_large_image
