@@ -7,11 +7,18 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+<style>
+  .cb_list ul { list-style-type: none; }
+</style>
+
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+cb <- "<input type='checkbox' />"
 ```
 
 ```{r setup}
@@ -38,17 +45,33 @@ Subject specialists and data analysts need to collaborate effectively to conduct
 
 The subject specialist is likely to lead the development of the research question and interpretation of analyses. The data analyst is likely to lead the data cleaning/wrangling and analysis. Either the specialist or the analyst may lead the data acquisition and description. However, they will need each other's expertise at all stages.
 
+## Concepts
+
+- random factor / unit of analysis
+- dependent variable / outcome measure
+- independent variable / fixed factor
+- categorical / discrete / ordinal
+- continuous
+- factor / variable / measure / column
+- raw vs calculated variables
+
 ## How a specialist can help an analyst
 
 When a data analyst starts to look at a new data set, they need to know these things about the project:
 
 ### What are the research questions? 
 
-This needs to be explained in terms of the observations you want to explain (e.g., the outcome measures, dependent variables), the factors you want to use to explain them (e.g., the independent variables, covariates), and any other attributes you might use to to exclude observations or divide your data.
+This needs to be explained in terms of the observations you want to predict (e.g., the outcome measures, dependent variables), the factors you want to use to predict them (e.g., the independent variables, covariates), and any other variables you might use to to exclude observations or divide your data. 
+
+In your explanation for the analyst, highlight the *model* variables, giving them each a short label that will be used in the cleaned data. Some of these variables may be already present in the *raw* data, while others need to be *computed* or *extracted*. For example, some information might be in the column headers rather than as a variable, or summary scores may need to be computed. 
 
 ### What are the random factors? 
 
-Often, human subjects are one unit of analysis, or random factor, but you may also be sampling at other levels, such as from different drug trials, or subjects may be nested in different countries. Your random factors may be crossed, for example when a sample of subjects respond to a sample of face images, both subjects and faces are units of analysis. 
+Often, human subjects are one unit of analysis, or random factor. You may have a nested design, where arms are nested inside studies for drug trials. Your random factors may be crossed, for example when a sample of subjects respond to a sample of face images, both subjects and faces are units of analysis. 
+
+Tell the analyst how to uniquely identify each member of a random factor (e.g., a subject ID column, or each arm of a drug trial is identified by the unique combination of study DOI and treatment). 
+
+Also give the analyst a rough idea of how many members there are of each random group. For example, "there should be about 500 subjects" or "there should be 35 studies with between 1 and 5 arms per study". This helps the analyst identify anomalies quickly.
 
 ### What belongs to which random factors?
 
@@ -72,32 +95,37 @@ Many of the values in the dataset probably need to be recoded in some way to cre
 
 ### Checklist
 
-- [ ] Write down the research questions, putting each thing that will be considered in the models in bold.
-- [ ] List the random factors
-    - [ ] Approximately how many should there be in the dataset?
-    - [ ] If nested, what is the approximate range of number per group?
-    - [ ] Which column(s) in the data uniquely identify each member of each random factor?
-    - [ ] Which columns in the data "belong" to each random factor?
-- [ ] List the variables in the data relevant to your research question(s)
-    - [ ] if categorical, what categories do you expect
-    - [ ] if continuous, what is the expected range
-    - [ ] what values are impossible
-    - [ ] what values are suspicious
-    - [ ] are there any variables that should definitely have a relationship (positive controls)
-- [ ] Explain how the variables in the data need to be recoded 
+<div class="cb_list">
+
+- `r cb` Write down the research questions, putting each thing that will be considered in the models in bold.
+- `r cb` List the random factors
+    - `r cb` Approximately how many should there be in the dataset?
+    - `r cb` If nested, what is the approximate range of number per group?
+    - `r cb` Which column(s) in the data uniquely identify each member of each random factor?
+    - `r cb` Which columns in the data "belong" to each random factor?
+- `r cb` List the variables in the data relevant to your research question(s)
+    - `r cb` if categorical, what categories do you expect
+    - `r cb` if continuous, what is the expected range
+    - `r cb` what values are impossible
+    - `r cb` what values are suspicious
+    - `r cb` are there any variables that should definitely have a relationship (positive controls)
+- `r cb` Explain how the variables in the data need to be recoded 
+
+</div>
+
+## How an analyst can help a specialist
+
+Writing asserts for the raw and cleaned data
+
+- how many members of each random factor are there? (count table)
+- if random factors are nested, plot a histogram of the N per group
+- for categorical factors:
+    - what are all the values and their counts
+    - make a table of pre- and post-cleaning values (unique pre-values with counts if N is large, individual pre-values if N is smaller)
+- for continuous factors:
+    - histograms or density plots
+    - tables of impossible or suspicious values for further inspection
 
 
-### Concepts
-
-- random factor / unit of analysis
-- dependent variable / outcome measure
-- independent variable / fixed factor
-- categorical / discrete / ordinal
-- continuous
-- factor / variable / measure / column
-- raw vs calculated variables
-
-
-
-
+Make a template for an initial data cleaning report?
 
